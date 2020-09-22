@@ -9,12 +9,14 @@ int main()
 {
     char bef_enc[] = "Hello.";
     char aft_enc[7];
+    char aft_dec[7];
     
     printString(bef_enc);
     encode(bef_enc, aft_enc, 4); 
     printString(aft_enc);
-    decode(aft_enc, bef_enc, 4); 
-    
+    decode(aft_enc, aft_dec, 4); 
+    printString(aft_dec);
+
     return 0;
 }
 
@@ -30,11 +32,21 @@ void encode(char *input, char *output, int bias)
         
         i++;
     }
+    output[i] = '\0';
 }
 
 void decode(char *input, char *output, int bias)
 {
-
+    int i = 0;
+    while (input[i] != '\0')
+    {
+        if ((input[i] >= 65 && input[i] <= 90) || (input[i] >= 97 && input[i] <= 122))
+            output[i] = input[i] - bias;
+        else
+            output[i] = input[i];
+        
+        i++;
+    }
 }
 
 void printString(char *str)
