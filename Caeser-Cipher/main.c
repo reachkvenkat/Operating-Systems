@@ -20,6 +20,9 @@ int main()
     return 0;
 }
 
+/*
+    Encodes the given string into caeser cipher
+*/
 void encode(char *input, char *output, int bias)
 {
     int i = 0;
@@ -35,6 +38,9 @@ void encode(char *input, char *output, int bias)
     output[i] = '\0';
 }
 
+/*
+    Decodes the caeser cipher to string
+*/
 void decode(char *input, char *output, int bias)
 {
     int i = 0;
@@ -49,6 +55,9 @@ void decode(char *input, char *output, int bias)
     }
 }
 
+/*
+    prints the given string
+*/
 void printString(char *str)
 {
     printf("%s\n", str);
