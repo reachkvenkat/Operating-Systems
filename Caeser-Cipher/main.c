@@ -7,9 +7,9 @@ void printString(char *str);
 
 int main()
 {
-    char bef_enc[] = "Hello.";
-    char aft_enc[7];
-    char aft_dec[7];
+    char bef_enc[] = "hello! how are you??";
+    char aft_enc[25];
+    char aft_dec[25];
     
     printString(bef_enc);
     encode(bef_enc, aft_enc, 4); 
@@ -28,8 +28,25 @@ void encode(char *input, char *output, int bias)
     int i = 0;
     while (input[i] != '\0')
     {
-        if ((input[i] >= 65 && input[i] <= 90) || (input[i] >= 97 && input[i] <= 122))
+        
+        if (input[i] >= 65 && input[i] <= 90)
+        {
             output[i] = input[i] + bias;
+
+            if (output[i] > 90)
+            {
+                output[i] = output[i] - 90 + 65 - 1;
+            }
+        }
+        else if (input[i] >= 97 && input[i] <= 122)
+        {
+            output[i] = input[i] + bias;
+
+            if (output[i] > 122)
+            {
+                output[i] = output[i] - 90 + 65 - 1;
+            }
+        }
         else
             output[i] = input[i];
         
@@ -46,8 +63,24 @@ void decode(char *input, char *output, int bias)
     int i = 0;
     while (input[i] != '\0')
     {
-        if ((input[i] >= 65 && input[i] <= 90) || (input[i] >= 97 && input[i] <= 122))
+        if (input[i] >= 65 && input[i] <= 90)
+        {
             output[i] = input[i] - bias;
+
+            if (output[i] < 65)
+            {
+                output[i] = output[i] + 90 - 65 + 1;
+            }
+        }
+        else if (input[i] >= 97 && input[i] <= 122)
+        {
+            output[i] = input[i] - bias;
+
+            if (output[i] < 97)
+            {
+                output[i] = output[i] + 90 - 65 + 1;
+            }
+        }
         else
             output[i] = input[i];
         
